@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nazrul Islam, FCC — Banking Compliance &amp; Regulatory Reporting</title>
+  <meta name="description" content="Banking compliance and regulatory reporting professional based in Dhaka, Bangladesh. CIB, CL, NBFC/SBS-2 &amp; 3 reporting and MIS.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* --- DESIGN TOKENS --- */
+    :root {
+      --navy: #0B1F3A;
+      --charcoal: #1F2937;
+      --white: #ffffff;
+      --gold: #C9A227;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+      
+      --spacing-section: 5rem 0;
+      --max-width: 1100px;
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    /* --- RESET & BASE --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--charcoal);
+      background-color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--navy); line-height: 1.2; }
+    a { color: var(--navy); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--gold); }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; }
+    
+    /* --- LAYOUT --- */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: var(--spacing-section); }
+    .section-alt { background-color: var(--slate-50); }
+    
+    /* --- HEADER / NAV --- */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 70px;
+    }
+    .logo { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+    .logo span { color: var(--gold); }
+    
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--slate-600); }
+    .nav-links a:hover { color: var(--navy); }
+    
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--navy); }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: absolute; top: 70px; left: 0; right: 0;
+        background: var(--white); flex-direction: column; padding: 1.5rem;
+        border-bottom: 1px solid var(--slate-200); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      }
+      .nav-links.active { display: flex; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* --- HERO --- */
+    #hero {
+      background-color: var(--navy);
+      color: var(--white);
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::after {
+      content: ''; position: absolute; top: -50%; right: -20%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-content h1 { font-size: 3rem; color: var(--white); margin-bottom: 0.5rem; }
+    .hero-content h1 span { color: var(--gold); }
+    .hero-title { font-size: 1.1rem; font-weight: 500; color: var(--slate-200); margin-bottom: 1.5rem; }
+    .hero-location { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--slate-200); margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem; border-radius: var(--radius);
+      font-weight: 500; font-size: 0.95rem; cursor: pointer;
+      transition: var(--transition); border: 1px solid transparent;
+    }
+    .btn-primary { background-color: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background-color: #b08d1e; color: var(--navy); }
+    .btn-outline { background: transparent; border-color: rgba(255,255,255,0.3); color: var(--white); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    
+    /* --- SECTIONS --- */
+    .section-header { margin-bottom: 2.5rem; }
+    .section-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .section-header .accent-line { width: 60px; height: 3px; background-color: var(--gold); }
+    
+    /* --- ABOUT --- */
+    .about-text { font-size: 1.05rem; color: var(--slate-700); max-width: 800px; }
+    
+    /* --- COMPETENCIES --- */
+    .competencies-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;
+    }
+    .competency-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 1rem; background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--slate-200);
+    }
+    .competency-item i { color: var(--gold); flex-shrink: 0; margin-top: 0.2rem; }
+    .competency-item span { font-size: 0.95rem; font-weight: 500; }
+    
+    /* --- EXPERIENCE TIMELINE --- */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background-color: var(--slate-200);
+    }
+    .timeline-entry { position: relative; margin-bottom: 3rem; }
+    .timeline-entry:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2.35rem; top: 0.25rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      background-color: var(--gold); border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .timeline-entry h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+    .timeline-entry .company { font-weight: 600; color: var(--navy); font-size: 1rem; }
+    .timeline-entry .dates { font-size: 0.85rem; color: var(--slate-600); margin-bottom: 1rem; display: block; }
+    
+    .responsibility-group { margin-top: 1rem; }
+    .responsibility-group h4 { font-size: 0.95rem; font-family: var(--font-sans); color: var(--slate-700); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .responsibility-group ul { list-style-type: disc; padding-left: 1.25rem; }
+    .responsibility-group li { font-size: 0.95rem; color: var(--slate-700); margin-bottom: 0.4rem; }
+    
+    .shared-duties {
+      background-color: var(--slate-50); padding: 1.5rem; border-radius: var(--radius);
+      border-left: 3px solid var(--gold); margin: 1.5rem 0;
+    }
+    .shared-duties h4 { font-size: 0.95rem; font-family: var(--font-sans); color: var(--navy); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .shared-duties ul { list-style-type: disc; padding-left: 1.25rem; }
+    .shared-duties li { font-size: 0.95rem; color: var(--slate-700); margin-bottom: 0.4rem; }
+    
+    /* --- ADDITIONAL EXPERTISE --- */
+    .expertise-list { list-style-type: disc; padding-left: 1.5rem; }
+    .expertise-list li { margin-bottom: 0.75rem; font-size: 1rem; color: var(--slate-700); }
+    
+    /* --- PROJECT WORK --- */
+    .project-card {
+      background: var(--white); padding: 2rem; border-radius: var(--radius);
+      border: 1px solid var(--slate-200); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .project-card h3 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+    .project-meta { font-size: 0.9rem; color: var(--slate-600); margin-bottom: 1rem; }
+    .project-card ul { list-style-type: disc; padding-left: 1.25rem; }
+    .project-card li { font-size: 0.95rem; color: var(--slate-700); margin-bottom: 0.5rem; }
+    
+    /* --- EDUCATION --- */
+    .education-grid { display: grid; gap: 1.5rem; }
+    .education-item { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--slate-200); padding-bottom: 1rem; }
+    .education-item h3 { font-size: 1.1rem; font-family: var(--font-sans); font-weight: 600; }
+    .education-item .institution { color: var(--slate-600); font-size: 0.95rem; }
+    .education-item .year { font-size: 0.9rem; font-weight: 500; color: var(--gold); }
+    
+    /* --- CERTIFICATIONS --- */
+    .credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .credential-list h3 { font-size: 1.1rem; font-family: var(--font-sans); margin-bottom: 1rem; }
+    .credential-list ul { list-style-type: disc; padding-left: 1.25rem; }
+    .credential-list li { font-size: 0.95rem; color: var(--slate-700); margin-bottom: 0.5rem; }
+    
+    /* --- ACHIEVEMENTS --- */
+    .achievements-list { list-style-type: disc; padding-left: 1.5rem; }
+    .achievements-list li { margin-bottom: 1rem; font-size: 1rem; color: var(--slate-700); }
+    
+    /* --- LANGUAGES --- */
+    .languages-grid { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .language-item h3 { font-size: 1.1rem; font-family: var(--font-sans); margin-bottom: 0.25rem; }
+    .language-item p { font-size: 0.95rem; color: var(--slate-600); }
+    
+    /* --- CONTACT --- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; }
+    .contact-item i { color: var(--gold); }
+    .contact-item a, .contact-item span { font-size: 0.95rem; color: var(--slate-700); }
+    
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label { font-size: 0.9rem; font-weight: 500; color: var(--slate-700); }
+    .form-group input, .form-group textarea {
+      padding: 0.75rem; border: 1px solid var(--slate-200); border-radius: var(--radius);
+      font-family: var(--font-sans); font-size: 0.95rem; width: 100%;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,162,39,0.2);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--navy); color: var(--slate-200);
+      padding: 2rem 0; text-align: center;
+    }
+    footer p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+    footer a { color: var(--gold); }
+    footer a:hover { color: var(--white); }
+    
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .credentials-grid { grid-template-columns: 1fr; }
+      .hero-content h1 { font-size: 2.25rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-content h1 { font-size: 1.8rem; }
+      .education-item { flex-direction: column; gap: 0.25rem; }
+      .languages-grid { flex-direction: column; gap: 1.5rem; }
+    }
+
+    /* --- PRINT STYLES --- */
+    @media print {
+      header, footer, .btn, .contact-form, #contact .section-header .accent-line { display: none !important; }
+      body { font-size: 12pt; color: #000; background: #fff; }
+      #hero { background: none; color: #000; padding: 0 0 2rem 0; }
+      #hero::after { display: none; }
+      .hero-content h1 { color: #000; font-size: 24pt; }
+      .hero-content h1 span { color: #000; }
+      .hero-title, .hero-location { color: #333; }
+      .section-alt { background: none; }
+      section { padding: 1.5rem 0; page-break-inside: avoid; }
+      .timeline::before { background: #ccc; }
+      .timeline-dot { border-color: #fff; box-shadow: 0 0 0 2px #000; }
+      a { text-decoration: none; color: #000; }
+      .contact-item i { display: none; }
+    }
+
+    /* --- REDUCED MOTION --- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    
+    /* --- SUBTLE FADE IN --- */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">Nazrul Islam, <span>FCC</span></a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+        <i data-lucide="menu"></i>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#competencies">Competencies</a>
+        <a href="#experience">Experience</a>
+        <a href="#project-work">Project Work</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container hero-content">
+      <h1>Nazrul Islam, <span>FCC</span></h1>
+      <p class="hero-title">Banking Compliance &amp; Regulatory Reporting Lead | CIB | CL | NBFC/SBS-2 &amp; 3 | MIS</p>
+      <div class="hero-location">
+        <i data-lucide="map-pin" size="18"></i>
+        <span>Dhaka, Bangladesh</span>
+      </div>
+      <div class="hero-actions">
+        <a href="mailto:nazrul.ufil@gmail.com" class="btn btn-primary">
+          <i data-lucide="mail" size="18"></i> Email Me
+        </a>
+        <a href="https://linkedin.com/in/nazrul-islamfcc-3a505915a" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i data-lucide="linkedin" size="18"></i> LinkedIn
+        </a>
+        <button onclick="window.print()" class="btn btn-outline">
+          <i data-lucide="printer" size="18"></i> Print Resume
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Career Objective</h2>
+        <div class="accent-line"></div>
+      </div>
+      <p class="about-text">
+        To secure a challenging position in a reputable organization where I can utilize my skills and experience in Banking Compliance, Regulatory Reporting, and MIS to contribute to the organization's growth and success.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPETENCIES -->
+  <section id="competencies" class="section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Core Competencies</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="competencies-grid">
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Real-Time CIS/CIB Reporting &amp; Management</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Regulatory Reporting (BB, CIB, CL, NBFC)</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Management Information Systems (MIS)</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Data Analysis &amp; Reconciliation</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Team Leadership &amp; Supervision</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Process Improvement &amp; Automation</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Documentation &amp; Record Keeping</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>HR Operations &amp; Administration</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Advanced MS Excel &amp; Reporting Tools</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Risk Management &amp; Compliance</span></div>
+        <div class="competency-item"><i data-lucide="check-circle" size="20"></i><span>Stakeholder Communication</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Experience</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="timeline">
+        
+        <!-- Role 1 -->
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <h3>Assistant Manager &amp; Head of CIB, Operations Department</h3>
+          <div class="company">IPDC Finance PLC</div>
+          <span class="dates">1 Dec 2024 – Present</span>
+          
+          <div class="responsibility-group">
+            <h4>BAMLCO Responsibilities</h4>
+            <ul>
+              <li>Act as the BAMLCO (Branch Anti-Money Laundering Compliance Officer) for the Operations Department.</li>
+              <li>Ensure compliance with all AML/CFT regulations and internal policies.</li>
+              <li>Monitor and report suspicious transactions to the relevant authorities.</li>
+              <li>Conduct training and awareness programs for staff on AML/CFT compliance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Shared Duties (Role 1 & Role 2) -->
+        <div class="shared-duties">
+          <h4>Responsibilities across both IPDC roles</h4>
+          <ul>
+            <li>Manage and oversee the CIB (Credit Information Bureau) reporting process.</li>
+            <li>Ensure timely and accurate submission of CIB reports to Bangladesh Bank.</li>
+            <li>Handle CL (Credit Limit) reporting and monitoring.</li>
+            <li>Prepare and submit NBFC/SBS-2 &amp; 3 reports.</li>
+            <li>Develop and maintain MIS reports for management decision-making.</li>
+            <li>Coordinate with internal departments and external stakeholders for data collection.</li>
+            <li>Identify and resolve discrepancies in reporting data.</li>
+            <li>Implement process improvements to enhance reporting efficiency.</li>
+            <li>Train and supervise junior team members on reporting procedures.</li>
+          </ul>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <h3>Assistant Manager, Operations Department</h3>
+          <div class="company">IPDC Finance PLC</div>
+          <span class="dates">1 Jan 2023 – 30 Nov 2024</span>
+          <p style="font-size: 0.9rem; color: var(--slate-600); font-style: italic;">See shared responsibilities above.</p>
+        </div>
+
+        <!-- Role 3 -->
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <h3>Senior Officer, Operations Department</h3>
+          <div class="company">Uttara Finance and Investments Limited</div>
+          <span class="dates">1 Jan 2020 – 31 Dec 2022</span>
+          <div class="responsibility-group">
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Assisted in the preparation and submission of CIB and CL reports.</li>
+              <li>Maintained accurate records of all regulatory submissions.</li>
+              <li>Supported the operations team in daily administrative tasks.</li>
+              <li>Contributed to the development of internal MIS reports.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Role 4 -->
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <h3>Officer, Operations Department</h3>
+          <div class="company">Uttara Finance &amp; Investments Limited</div>
+          <span class="dates">1 Jan 2018 – 31 Dec 2019</span>
+          <div class="responsibility-group">
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Processed daily operational transactions.</li>
+              <li>Assisted in data entry and record keeping.</li>
+              <li>Supported senior officers in reporting tasks.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL EXPERTISE -->
+  <section id="additional-expertise" class="section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Additional Expertise</h2>
+        <div class="accent-line"></div>
+      </div>
+      <ul class="expertise-list">
+        <li>Acquired 9 months of experience in the Human Resources Department at Bangla Vision TV.</li>
+        <li>Experienced in reporting, documentation, and HR operations.</li>
+        <li>Strong understanding of regulatory reporting requirements.</li>
+        <li>Proficient in data analysis and reconciliation.</li>
+        <li>Excellent communication and interpersonal skills.</li>
+        <li>Ability to work under pressure and meet deadlines.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECT WORK -->
+  <section id="project-work">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Project Work</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="project-card">
+        <h3>Core Banking System (CBS) Migration</h3>
+        <div class="project-meta">
+          <strong>CBS (Fin-Ultimus) Migration Core Team Member</strong> | Uttara Finance &amp; Investments Limited | 7 months
+        </div>
+        <ul>
+          <li>Played a key role in the successful migration of the Core Banking System.</li>
+          <li>Assisted in data mapping and migration validation processes.</li>
+          <li>Provided post-migration support and troubleshooting.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Education</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="education-grid">
+        <div class="education-item">
+          <div>
+            <h3>Master of Business Administration (MBA), Marketing</h3>
+            <div class="institution">Eastern University</div>
+          </div>
+          <div class="year">2011</div>
+        </div>
+        <div class="education-item">
+          <div>
+            <h3>Bachelor of Business Administration (BBA), Marketing</h3>
+            <div class="institution">Eastern University</div>
+          </div>
+          <div class="year">2009</div>
+        </div>
+        <div class="education-item">
+          <div>
+            <h3>Higher Secondary Certificate (HSC)</h3>
+            <div class="institution">Dhaka College</div>
+          </div>
+          <div class="year">2005</div>
+        </div>
+        <div class="education-item">
+          <div>
+            <h3>Secondary School Certificate (SSC)</h3>
+            <div class="institution">Motijheel Ideal School</div>
+          </div>
+          <div class="year">2003</div>
+        </div>
+        <div class="education-item">
+          <div>
+            <h3>Junior School Certificate (JSC)</h3>
+            <div class="institution">Motijheel Ideal School</div>
+          </div>
+          <div class="year">2000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Certifications &amp; Training</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="credentials-grid">
+        <div class="credential-list">
+          <h3>Certification Courses</h3>
+          <ul>
+            <li>Certified in Anti-Money Laundering &amp; Combating Financing of Terrorism (AML/CFT)</li>
+            <li>Certified in Credit Information Bureau (CIB) Reporting</li>
+            <li>Certified in Regulatory Reporting for NBFCs</li>
+          </ul>
+        </div>
+        <div class="credential-list">
+          <h3>Professional Training / Seminars</h3>
+          <ul>
+            <li>Training on CIB Reporting and Management</li>
+            <li>Seminar on AML/CFT Compliance</li>
+            <li>Workshop on MIS and Data Analysis</li>
+            <li>Training on Core Banking System (Fin-Ultimus)</li>
+            <li>Seminar on Risk Management in Financial Institutions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Achievements</h2>
+        <div class="accent-line"></div>
+      </div>
+      <ul class="achievements-list">
+        <li>Successfully led the CIB reporting team at IPDC Finance PLC, ensuring 100% timely submission.</li>
+        <li>Recognized for outstanding contribution to the CBS migration project at Uttara Finance &amp; Investments Limited.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Languages</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="languages-grid">
+        <div class="language-item">
+          <h3>English</h3>
+          <p>Speaking, Writing &amp; Typing: High</p>
+        </div>
+        <div class="language-item">
+          <h3>Bengali</h3>
+          <p>Native Proficiency</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-alt">
+    <div class="container fade-in">
+      <div class="section-header">
+        <h2>Contact</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-details">
+          <div class="contact-item">
+            <i data-lucide="mail" size="20"></i>
+            <a href="mailto:nazrul.ufil@gmail.com">nazrul.ufil@gmail.com</a>
+          </div>
+          <!-- Phone number hidden by default as per plan recommendation. Uncomment if approved.
+          <div class="contact-item">
+            <i data-lucide="phone" size="20"></i>
+            <span>01974400035</span>
+          </div>
+          -->
+          <div class="contact-item">
+            <i data-lucide="linkedin" size="20"></i>
+            <a href="https://linkedin.com/in/nazrul-islamfcc-3a505915a" target="_blank" rel="noopener noreferrer">linkedin.com/in/nazrul-islamfcc-3a505915a</a>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="map-pin" size="20"></i>
+            <span>Dhaka, Bangladesh</span>
+          </div>
+        </div>
+        
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
+            <i data-lucide="send" size="18"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p><strong>Nazrul Islam, FCC</strong></p>
+      <p>Banking Compliance &amp; Regulatory Reporting Lead | CIB | CL | NBFC/SBS-2 &amp; 3 | MIS</p>
+      <p style="margin-top: 1rem;"><a href="#hero">Back to top <i data-lucide="arrow-up" size="14" style="display: inline; vertical-align: middle;"></i></a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Mailto Form Handling
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+      
+      window.location.href = 'mailto:nazrul.ufil@gmail.com?subject=' + subject + '&body=' + body;
+    });
+
+    // Subtle Fade-in on Scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
